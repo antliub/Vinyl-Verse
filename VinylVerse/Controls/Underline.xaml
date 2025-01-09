@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="VinylVerse.Controls.Underline"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Border x:Name="UnderlineBorder"
+                Background="Gray"
+                Height="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch"
+                Margin="0" />
+    </Grid>
+</UserControl>

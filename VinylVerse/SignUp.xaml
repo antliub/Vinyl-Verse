@@ -1,0 +1,197 @@
+﻿<Window x:Class="VinylVerse.SignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VinylVerse.Behaviors"
+        xmlns:controls="clr-namespace:VinylVerse.Controls"
+        mc:Ignorable="d"
+        Title="SignUp"
+        Width="470"
+        Height="600"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        local:DragBehavior.IsDragEnabled="True">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="83*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="95*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="56"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White" CornerRadius="25" BorderThickness="1" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+
+        <Label Content="Sign Up" Foreground="#130F40" Margin="92,21,0,148" FontSize="48" FontFamily="Kanit" HorizontalAlignment="Left" Grid.Column="1"/>
+
+        <!-- Username -->
+        <TextBox x:Name="username_textbox"
+                 Background="Transparent"
+                 BorderBrush="Transparent"
+                 BorderThickness="0"
+                 FontSize="16"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 Width="325" Margin="16,126,0,0" Grid.Column="1" FontFamily="Kanit" Height="19" Text="" TextChanged="username_textbox_TextChanged" />
+
+        <controls:Underline x:Name="username_underline" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,148,49,92" RenderTransformOrigin="3.375,0.496" Grid.ColumnSpan="2" />
+
+        <Path x:Name="username_deny_circle" Data="M115 19.1667C62.1957 19.1667 19.1665 62.1959 19.1665 115C19.1665 167.804 62.1957 210.833 115 210.833C167.804 210.833 210.833 167.804 210.833 115C210.833 62.1959 167.804 19.1667 115 19.1667ZM147.2 137.042C149.979 139.821 149.979 144.421 147.2 147.2C145.762 148.638 143.942 149.308 142.121 149.308C140.3 149.308 138.479 148.638 137.042 147.2L115 125.158L92.9582 147.2C91.5207 148.638 89.6998 149.308 87.879 149.308C86.0582 149.308 84.2373 148.638 82.7998 147.2C80.0207 144.421 80.0207 139.821 82.7998 137.042L104.842 115L82.7998 92.9584C80.0207 90.1793 80.0207 85.5793 82.7998 82.8001C85.579 80.0209 90.179 80.0209 92.9582 82.8001L115 104.842L137.042 82.8001C139.821 80.0209 144.421 80.0209 147.2 82.8001C149.979 85.5793 149.979 90.1793 147.2 92.9584L125.158 115L147.2 137.042Z" Fill="#130F40" Grid.Column="1" Margin="346,124,48,105" Stretch="Fill" Width="20" Height="20" />
+        <Path x:Name="username_icon" Data="M17 19C17 17.6044 17 16.9067 16.8278 16.3389C16.44 15.0605 15.4395 14.06 14.1611 13.6722C13.5933 13.5 12.8956 13.5 11.5 13.5H6.5C5.10444 13.5 4.40665 13.5 3.83886 13.6722C2.56045 14.06 1.56004 15.0605 1.17224 16.3389C1 16.9067 1 17.6044 1 19M13.5 5.5C13.5 7.98528 11.4853 10 9 10C6.51472 10 4.5 7.98528 4.5 5.5C4.5 3.01472 6.51472 1 9 1C11.4853 1 13.5 3.01472 13.5 5.5Z" Stroke="#D7D7D7" StrokeThickness="2" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="40,124,409,102" Stretch="Fill" Grid.ColumnSpan="2" />
+        <Path x:Name="username_accept_circle" Data="M11 5.54285V6.00285C10.9994 7.08105 10.6502 8.1302 10.0046 8.99375C9.3591 9.85735 8.45165 10.4891 7.4177 10.7948C6.3837 11.1005 5.27865 11.0638 4.26723 10.6902C3.25584 10.3165 2.39232 9.6259 1.80548 8.7214C1.21863 7.8169 0.939894 6.7469 1.01084 5.671C1.08178 4.59515 1.4986 3.57103 2.19914 2.7514C2.89967 1.93177 3.84639 1.36056 4.89809 1.12294C5.9498 0.885316 7.05015 0.994031 8.035 1.43286M11 2L6 7.005L4.5 5.505" Stroke="#55D78B" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Grid.Column="1" Margin="346,124,48,105" Stretch="Fill" StrokeThickness="2" Visibility="Hidden" />
+
+        <!-- Mail -->
+        <TextBox x:Name="email_textbox"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            FontSize="16"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="325" Margin="16,201,0,0" Grid.Column="1" FontFamily="Kanit" Height="19" Text="" TextChanged="email_textbox_TextChanged" />
+
+        <controls:Underline x:Name="email_underline" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,223,49,17" RenderTransformOrigin="3.375,0.496" Grid.ColumnSpan="2" />
+
+        <Path x:Name="email_deny_circle" Data="M115 19.1667C62.1957 19.1667 19.1665 62.1959 19.1665 115C19.1665 167.804 62.1957 210.833 115 210.833C167.804 210.833 210.833 167.804 210.833 115C210.833 62.1959 167.804 19.1667 115 19.1667ZM147.2 137.042C149.979 139.821 149.979 144.421 147.2 147.2C145.762 148.638 143.942 149.308 142.121 149.308C140.3 149.308 138.479 148.638 137.042 147.2L115 125.158L92.9582 147.2C91.5207 148.638 89.6998 149.308 87.879 149.308C86.0582 149.308 84.2373 148.638 82.7998 147.2C80.0207 144.421 80.0207 139.821 82.7998 137.042L104.842 115L82.7998 92.9584C80.0207 90.1793 80.0207 85.5793 82.7998 82.8001C85.579 80.0209 90.179 80.0209 92.9582 82.8001L115 104.842L137.042 82.8001C139.821 80.0209 144.421 80.0209 147.2 82.8001C149.979 85.5793 149.979 90.1793 147.2 92.9584L125.158 115L147.2 137.042Z" Fill="#130F40" Grid.Column="1" Margin="346,199,48,30" Stretch="Fill" Width="20" Height="20" />
+        <Path x:Name="email_accept_circle" Data="M11 5.54285V6.00285C10.9994 7.08105 10.6502 8.1302 10.0046 8.99375C9.3591 9.85735 8.45165 10.4891 7.4177 10.7948C6.3837 11.1005 5.27865 11.0638 4.26723 10.6902C3.25584 10.3165 2.39232 9.6259 1.80548 8.7214C1.21863 7.8169 0.939894 6.7469 1.01084 5.671C1.08178 4.59515 1.4986 3.57103 2.19914 2.7514C2.89967 1.93177 3.84639 1.36056 4.89809 1.12294C5.9498 0.885316 7.05015 0.994031 8.035 1.43286M11 2L6 7.005L4.5 5.505" Stroke="#55D78B" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Grid.Column="1" Margin="346,199,48,30" Stretch="Fill" StrokeThickness="2" Visibility="Hidden" />
+        <Viewbox x:Name="email_icon" Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Margin="40,198,409,25" Grid.ColumnSpan="2">
+            <Canvas Height="22" Width="20">
+                <Path Data="M18.5 6.13379L10 10.8561M10 10.8561L1.49997 6.13379M10 10.8561V20.3561M19 14.9146V6.79749C19 6.45485 19 6.28353 18.9495 6.13073C18.9049 5.99555 18.8318 5.87147 18.7354 5.76678C18.6263 5.64844 18.4766 5.56524 18.177 5.39884L10.777 1.28773C10.4934 1.13017 10.3516 1.05139 10.2015 1.0205C10.0685 0.993168 9.9315 0.993168 9.7986 1.0205C9.6484 1.05139 9.5066 1.13017 9.223 1.28773L1.82297 5.39884C1.52345 5.56524 1.37369 5.64844 1.26463 5.76678C1.16816 5.87147 1.09515 5.99555 1.05048 6.13073C1 6.28353 1 6.45485 1 6.79749V14.9146C1 15.2573 1 15.4286 1.05048 15.5814C1.09515 15.7166 1.16816 15.8407 1.26463 15.9453C1.37369 16.0637 1.52345 16.1469 1.82297 16.3133L9.223 20.4244C9.5066 20.582 9.6484 20.6607 9.7986 20.6916C9.9315 20.719 10.0685 20.719 10.2015 20.6916C10.3516 20.6607 10.4934 20.582 10.777 20.4244L18.177 16.3133C18.4766 16.1469 18.6263 16.0637 18.7354 15.9453C18.8318 15.8407 18.9049 15.7166 18.9495 15.5814C19 15.4286 19 15.2573 19 14.9146Z" Stroke="#D7D7D7" StrokeThickness="2" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" />
+                <Path Data="M14.5 8.35596L5.5 3.35596" Stroke="#D7D7D7" StrokeThickness="2" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" />
+            </Canvas>
+        </Viewbox>
+
+        <!-- Password -->
+        <TextBox x:Name="password_textbox"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            FontSize="16"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="325" Margin="16,30,0,0" Grid.Column="1" FontFamily="Kanit" Height="19" Text="" Grid.Row="1" TextChanged="password_textbox_TextChanged" />
+        <controls:Underline x:Name="password_underline" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,52,49,5" RenderTransformOrigin="3.375,0.496" Grid.ColumnSpan="2" Grid.Row="1" />
+        <controls:Underline x:Name="password_underline_correction" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,52,49,5" RenderTransformOrigin="3.375,0.496" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Path Data="M21 7V4.2C21 3.0799 21 2.51984 20.782 2.09202C20.5903 1.71569 20.2843 1.40973 19.908 1.21799C19.4802 1 18.9201 1 17.8 1H4.2C3.0799 1 2.51984 1 2.09202 1.21799C1.71569 1.40973 1.40973 1.71569 1.21799 2.09202C1 2.51984 1 3.0799 1 4.2V7.8C1 8.9201 1 9.4802 1.21799 9.908C1.40973 10.2843 1.71569 10.5903 2.09202 10.782C2.51984 11 3.0799 11 4.2 11H10M11 6H11.005M16 6H16.005M6 6H6.005M18.25 13V11.25C18.25 10.2835 17.4665 9.5 16.5 9.5C15.5335 9.5 14.75 10.2835 14.75 11.25V13M11.25 6C11.25 6.1381 11.1381 6.25 11 6.25C10.8619 6.25 10.75 6.1381 10.75 6C10.75 5.86193 10.8619 5.75 11 5.75C11.1381 5.75 11.25 5.86193 11.25 6ZM16.25 6C16.25 6.1381 16.1381 6.25 16 6.25C15.8619 6.25 15.75 6.1381 15.75 6C15.75 5.86193 15.8619 5.75 16 5.75C16.1381 5.75 16.25 5.86193 16.25 6ZM6.25 6C6.25 6.1381 6.13807 6.25 6 6.25C5.86193 6.25 5.75 6.1381 5.75 6C5.75 5.86193 5.86193 5.75 6 5.75C6.13807 5.75 6.25 5.86193 6.25 6ZM14.6 17H18.4C18.9601 17 19.2401 17 19.454 16.891C19.6422 16.7951 19.7951 16.6422 19.891 16.454C20 16.2401 20 15.9601 20 15.4V14.6C20 14.0399 20 13.7599 19.891 13.546C19.7951 13.3578 19.6422 13.2049 19.454 13.109C19.2401 13 18.9601 13 18.4 13H14.6C14.0399 13 13.7599 13 13.546 13.109C13.3578 13.2049 13.2049 13.3578 13.109 13.546C13 13.7599 13 14.0399 13 14.6V15.4C13 15.9601 13 16.2401 13.109 16.454C13.2049 16.6422 13.3578 16.7951 13.546 16.891C13.7599 17 14.0399 17 14.6 17Z" Stroke="#D7D7D7" StrokeThickness="2" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="40,30,406,14" Grid.Row="1" Grid.ColumnSpan="2" Stretch="Fill" />
+        <Viewbox x:Name="password_eye_closed_icon" Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Grid.Column="1" Margin="344,29,46,16" Grid.Row="1" Cursor="Hand" MouseLeftButtonDown="password_eye_closed_icon_MouseLeftButtonDown">
+            <Canvas Height="24" Width="24">
+                <Path Data="M9.46992 15.2799C9.27992 15.2799 9.08992 15.2099 8.93992 15.0599C8.11992 14.2399 7.66992 13.1499 7.66992 11.9999C7.66992 9.60992 9.60992 7.66992 11.9999 7.66992C13.1499 7.66992 14.2399 8.11992 15.0599 8.93992C15.1999 9.07992 15.2799 9.26992 15.2799 9.46992C15.2799 9.66992 15.1999 9.85992 15.0599 9.99992L9.99992 15.0599C9.84992 15.2099 9.65992 15.2799 9.46992 15.2799ZM11.9999 9.16992C10.4399 9.16992 9.16992 10.4399 9.16992 11.9999C9.16992 12.4999 9.29992 12.9799 9.53992 13.3999L13.3999 9.53992C12.9799 9.29992 12.4999 9.16992 11.9999 9.16992Z" Fill="#130F40" />
+                <Path Data="M5.59984 18.51C5.42984 18.51 5.24984 18.45 5.10984 18.33C4.03984 17.42 3.07984 16.3 2.25984 15C1.19984 13.35 1.19984 10.66 2.25984 8.99998C4.69984 5.17998 8.24984 2.97998 11.9998 2.97998C14.1998 2.97998 16.3698 3.73998 18.2698 5.16998C18.5998 5.41998 18.6698 5.88998 18.4198 6.21998C18.1698 6.54998 17.6998 6.61998 17.3698 6.36998C15.7298 5.12998 13.8698 4.47998 11.9998 4.47998C8.76984 4.47998 5.67984 6.41998 3.51984 9.80998C2.76984 10.98 2.76984 13.02 3.51984 14.19C4.26984 15.36 5.12984 16.37 6.07984 17.19C6.38984 17.46 6.42984 17.93 6.15984 18.25C6.01984 18.42 5.80984 18.51 5.59984 18.51Z" Fill="#130F40" />
+                <Path Data="M12.0001 21.02C10.6701 21.02 9.37006 20.75 8.12006 20.22C7.74006 20.06 7.56006 19.62 7.72006 19.24C7.88006 18.86 8.32006 18.68 8.70006 18.84C9.76006 19.29 10.8701 19.52 11.9901 19.52C15.2201 19.52 18.3101 17.58 20.4701 14.19C21.2201 13.02 21.2201 10.98 20.4701 9.81C20.1601 9.32 19.8201 8.85 19.4601 8.41C19.2001 8.09 19.2501 7.62 19.5701 7.35C19.8901 7.09 20.3601 7.13 20.6301 7.46C21.0201 7.94 21.4001 8.46 21.7401 9C22.8001 10.65 22.8001 13.34 21.7401 15C19.3001 18.82 15.7501 21.02 12.0001 21.02Z" Fill="#130F40" />
+                <Path Data="M12.6901 16.2701C12.3401 16.2701 12.0201 16.0201 11.9501 15.6601C11.8701 15.2501 12.1401 14.8601 12.5501 14.7901C13.6501 14.5901 14.5701 13.6701 14.7701 12.5701C14.8501 12.1601 15.2401 11.9001 15.6501 11.9701C16.0601 12.0501 16.3301 12.4401 16.2501 12.8501C15.9301 14.5801 14.5501 15.9501 12.8301 16.2701C12.7801 16.2601 12.7401 16.2701 12.6901 16.2701Z" Fill="#130F40" />
+                <Path Data="M1.99994 22.75C1.80994 22.75 1.61994 22.68 1.46994 22.53C1.17994 22.24 1.17994 21.76 1.46994 21.47L8.93994 14C9.22994 13.71 9.70994 13.71 9.99994 14C10.2899 14.29 10.2899 14.77 9.99994 15.06L2.52994 22.53C2.37994 22.68 2.18994 22.75 1.99994 22.75Z" Fill="#130F40" />
+                <Path Data="M14.5302 10.2199C14.3402 10.2199 14.1502 10.1499 14.0002 9.99994C13.7102 9.70994 13.7102 9.22994 14.0002 8.93994L21.4702 1.46994C21.7602 1.17994 22.2402 1.17994 22.5302 1.46994C22.8202 1.75994 22.8202 2.23994 22.5302 2.52994L15.0602 9.99994C14.9102 10.1499 14.7202 10.2199 14.5302 10.2199Z" Fill="#130F40" />
+            </Canvas>
+        </Viewbox>
+        <Viewbox x:Name="password_eye_icon" Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Grid.Column="1" Margin="344,26,46,13" Grid.Row="1" Cursor="Hand" MouseLeftButtonDown="password_eye_icon_MouseLeftButtonDown" Visibility="Hidden">
+            <Canvas Height="24" Width="24">
+                <Path Data="M11.9999 16.3299C9.60992 16.3299 7.66992 14.3899 7.66992 11.9999C7.66992 9.60992 9.60992 7.66992 11.9999 7.66992C14.3899 7.66992 16.3299 9.60992 16.3299 11.9999C16.3299 14.3899 14.3899 16.3299 11.9999 16.3299ZM11.9999 9.16992C10.4399 9.16992 9.16992 10.4399 9.16992 11.9999C9.16992 13.5599 10.4399 14.8299 11.9999 14.8299C13.5599 14.8299 14.8299 13.5599 14.8299 11.9999C14.8299 10.4399 13.5599 9.16992 11.9999 9.16992Z" Fill="#130F40" />
+                <Path x:Name="password_check_characters_lable1" Data="M12.0001 21.02C8.24008 21.02 4.69008 18.82 2.25008 15C1.19008 13.35 1.19008 10.66 2.25008 8.99998C4.70008 5.17998 8.25008 2.97998 12.0001 2.97998C15.7501 2.97998 19.3001 5.17998 21.7401 8.99998C22.8001 10.65 22.8001 13.34 21.7401 15C19.3001 18.82 15.7501 21.02 12.0001 21.02ZM12.0001 4.47998C8.77008 4.47998 5.68008 6.41998 3.52008 9.80998C2.77008 10.98 2.77008 13.02 3.52008 14.19C5.68008 17.58 8.77008 19.52 12.0001 19.52C15.2301 19.52 18.3201 17.58 20.4801 14.19C21.2301 13.02 21.2301 10.98 20.4801 9.80998C18.3201 6.41998 15.2301 4.47998 12.0001 4.47998Z" Fill="#130F40" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            </Canvas>
+        </Viewbox>
+
+        <Ellipse x:Name="password_unchecked_characters" Canvas.Left="0" Canvas.Top="0" Fill="#FFD7D7D7" Margin="2,21,408,260" Grid.Row="2" Grid.Column="1" />
+        <Label Content="Already member?" Foreground="#130F40" Margin="80,226,0,25" FontSize="16" FontFamily="Kanit" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"/>
+        <Ellipse x:Name="password_unchecked_numbers" Fill="#FFD7D7D7" Margin="2,45,408,236" Grid.Row="2" Grid.Column="1" />
+        <Label x:Name="password_check_numbers_lable" Content="Least one number (0-9) or a symbol" Foreground="#FFD7D7D7" Margin="8,35,0,226" FontFamily="Kanit" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"/>
+        <Ellipse x:Name="password_unchecked_case" Fill="#FFD7D7D7" Margin="2,67,408,214" Grid.Row="2" Grid.Column="1" />
+        <Label x:Name="password_check_case_lable" Content="Lowercase (a-z) and upercase (A-Z)" Foreground="#FFD7D7D7" Margin="8,57,0,204" FontFamily="Kanit" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"/>
+        <Path x:Name="password_checked_characters" Data="M6.33333 1L2.66667 4.66667L1 3" Stroke="#55D78B" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="55,19,405,258" Stretch="Fill" Grid.Row="2" Grid.ColumnSpan="2" StrokeThickness="2" Visibility="Hidden" />
+        <Path x:Name="password_checked_case" Data="M6.33333 1L2.66667 4.66667L1 3" Stroke="#55D78B" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="55,65,405,212" Stretch="Fill" Grid.Row="2" Grid.ColumnSpan="2" StrokeThickness="2" Visibility="Hidden" />
+        <Path x:Name="password_checked_numbers" Data="M6.33333 1L2.66667 4.66667L1 3" Stroke="#55D78B" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="55,43,405,234" Stretch="Fill" Grid.Row="2" Grid.ColumnSpan="2" StrokeThickness="2" Visibility="Hidden" />
+
+        <!-- Re-Type Password -->
+        <TextBox x:Name="r_password_textbox"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            FontSize="16"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="325" Margin="16,115,0,0" Grid.Column="1" FontFamily="Kanit" Height="18" Text="" Grid.Row="2" TextChanged="r_password_textbox_TextChanged" />
+        <controls:Underline x:Name="r_password_underline" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,137,49,140" RenderTransformOrigin="3.375,0.496" Grid.ColumnSpan="2" Grid.Row="2" />
+        <Path Data="M21 7V4.2C21 3.0799 21 2.51984 20.782 2.09202C20.5903 1.71569 20.2843 1.40973 19.908 1.21799C19.4802 1 18.9201 1 17.8 1H4.2C3.0799 1 2.51984 1 2.09202 1.21799C1.71569 1.40973 1.40973 1.71569 1.21799 2.09202C1 2.51984 1 3.0799 1 4.2V7.8C1 8.9201 1 9.4802 1.21799 9.908C1.40973 10.2843 1.71569 10.5903 2.09202 10.782C2.51984 11 3.0799 11 4.2 11H10M11 6H11.005M16 6H16.005M6 6H6.005M18.25 13V11.25C18.25 10.2835 17.4665 9.5 16.5 9.5C15.5335 9.5 14.75 10.2835 14.75 11.25V13M11.25 6C11.25 6.1381 11.1381 6.25 11 6.25C10.8619 6.25 10.75 6.1381 10.75 6C10.75 5.86193 10.8619 5.75 11 5.75C11.1381 5.75 11.25 5.86193 11.25 6ZM16.25 6C16.25 6.1381 16.1381 6.25 16 6.25C15.8619 6.25 15.75 6.1381 15.75 6C15.75 5.86193 15.8619 5.75 16 5.75C16.1381 5.75 16.25 5.86193 16.25 6ZM6.25 6C6.25 6.1381 6.13807 6.25 6 6.25C5.86193 6.25 5.75 6.1381 5.75 6C5.75 5.86193 5.86193 5.75 6 5.75C6.13807 5.75 6.25 5.86193 6.25 6ZM14.6 17H18.4C18.9601 17 19.2401 17 19.454 16.891C19.6422 16.7951 19.7951 16.6422 19.891 16.454C20 16.2401 20 15.9601 20 15.4V14.6C20 14.0399 20 13.7599 19.891 13.546C19.7951 13.3578 19.6422 13.2049 19.454 13.109C19.2401 13 18.9601 13 18.4 13H14.6C14.0399 13 13.7599 13 13.546 13.109C13.3578 13.2049 13.2049 13.3578 13.109 13.546C13 13.7599 13 14.0399 13 14.6V15.4C13 15.9601 13 16.2401 13.109 16.454C13.2049 16.6422 13.3578 16.7951 13.546 16.891C13.7599 17 14.0399 17 14.6 17Z" Stroke="#D7D7D7" StrokeThickness="2" StrokeStartLineCap="round" StrokeEndLineCap="round" StrokeLineJoin="round" Fill="#00000000" Margin="40,114,406,148" Grid.Row="2" Grid.ColumnSpan="2" Stretch="Fill" />
+        <Viewbox x:Name="r_eye_closed_icon" Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Grid.Column="1" Margin="344,114,46,150" Grid.Row="2" Cursor="Hand" MouseLeftButtonDown="r_eye_closed_icon_MouseLeftButtonDown">
+            <Canvas Height="24" Width="24">
+                <Path Data="M9.46992 15.2799C9.27992 15.2799 9.08992 15.2099 8.93992 15.0599C8.11992 14.2399 7.66992 13.1499 7.66992 11.9999C7.66992 9.60992 9.60992 7.66992 11.9999 7.66992C13.1499 7.66992 14.2399 8.11992 15.0599 8.93992C15.1999 9.07992 15.2799 9.26992 15.2799 9.46992C15.2799 9.66992 15.1999 9.85992 15.0599 9.99992L9.99992 15.0599C9.84992 15.2099 9.65992 15.2799 9.46992 15.2799ZM11.9999 9.16992C10.4399 9.16992 9.16992 10.4399 9.16992 11.9999C9.16992 12.4999 9.29992 12.9799 9.53992 13.3999L13.3999 9.53992C12.9799 9.29992 12.4999 9.16992 11.9999 9.16992Z" Fill="#130F40" />
+                <Path Data="M5.59984 18.51C5.42984 18.51 5.24984 18.45 5.10984 18.33C4.03984 17.42 3.07984 16.3 2.25984 15C1.19984 13.35 1.19984 10.66 2.25984 8.99998C4.69984 5.17998 8.24984 2.97998 11.9998 2.97998C14.1998 2.97998 16.3698 3.73998 18.2698 5.16998C18.5998 5.41998 18.6698 5.88998 18.4198 6.21998C18.1698 6.54998 17.6998 6.61998 17.3698 6.36998C15.7298 5.12998 13.8698 4.47998 11.9998 4.47998C8.76984 4.47998 5.67984 6.41998 3.51984 9.80998C2.76984 10.98 2.76984 13.02 3.51984 14.19C4.26984 15.36 5.12984 16.37 6.07984 17.19C6.38984 17.46 6.42984 17.93 6.15984 18.25C6.01984 18.42 5.80984 18.51 5.59984 18.51Z" Fill="#130F40" />
+                <Path Data="M12.0001 21.02C10.6701 21.02 9.37006 20.75 8.12006 20.22C7.74006 20.06 7.56006 19.62 7.72006 19.24C7.88006 18.86 8.32006 18.68 8.70006 18.84C9.76006 19.29 10.8701 19.52 11.9901 19.52C15.2201 19.52 18.3101 17.58 20.4701 14.19C21.2201 13.02 21.2201 10.98 20.4701 9.81C20.1601 9.32 19.8201 8.85 19.4601 8.41C19.2001 8.09 19.2501 7.62 19.5701 7.35C19.8901 7.09 20.3601 7.13 20.6301 7.46C21.0201 7.94 21.4001 8.46 21.7401 9C22.8001 10.65 22.8001 13.34 21.7401 15C19.3001 18.82 15.7501 21.02 12.0001 21.02Z" Fill="#130F40" />
+                <Path Data="M12.6901 16.2701C12.3401 16.2701 12.0201 16.0201 11.9501 15.6601C11.8701 15.2501 12.1401 14.8601 12.5501 14.7901C13.6501 14.5901 14.5701 13.6701 14.7701 12.5701C14.8501 12.1601 15.2401 11.9001 15.6501 11.9701C16.0601 12.0501 16.3301 12.4401 16.2501 12.8501C15.9301 14.5801 14.5501 15.9501 12.8301 16.2701C12.7801 16.2601 12.7401 16.2701 12.6901 16.2701Z" Fill="#130F40" />
+                <Path Data="M1.99994 22.75C1.80994 22.75 1.61994 22.68 1.46994 22.53C1.17994 22.24 1.17994 21.76 1.46994 21.47L8.93994 14C9.22994 13.71 9.70994 13.71 9.99994 14C10.2899 14.29 10.2899 14.77 9.99994 15.06L2.52994 22.53C2.37994 22.68 2.18994 22.75 1.99994 22.75Z" Fill="#130F40" />
+                <Path Data="M14.5302 10.2199C14.3402 10.2199 14.1502 10.1499 14.0002 9.99994C13.7102 9.70994 13.7102 9.22994 14.0002 8.93994L21.4702 1.46994C21.7602 1.17994 22.2402 1.17994 22.5302 1.46994C22.8202 1.75994 22.8202 2.23994 22.5302 2.52994L15.0602 9.99994C14.9102 10.1499 14.7202 10.2199 14.5302 10.2199Z" Fill="#130F40" />
+            </Canvas>
+        </Viewbox>
+        <Viewbox x:Name="r_eye_icon" Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Grid.Column="1" Margin="345,112,47,149" Grid.Row="2" Visibility="Hidden" Cursor="Hand" MouseLeftButtonDown="r_eye_icon_MouseLeftButtonDown">
+            <Canvas Height="24" Width="24">
+                <Path Data="M11.9999 16.3299C9.60992 16.3299 7.66992 14.3899 7.66992 11.9999C7.66992 9.60992 9.60992 7.66992 11.9999 7.66992C14.3899 7.66992 16.3299 9.60992 16.3299 11.9999C16.3299 14.3899 14.3899 16.3299 11.9999 16.3299ZM11.9999 9.16992C10.4399 9.16992 9.16992 10.4399 9.16992 11.9999C9.16992 13.5599 10.4399 14.8299 11.9999 14.8299C13.5599 14.8299 14.8299 13.5599 14.8299 11.9999C14.8299 10.4399 13.5599 9.16992 11.9999 9.16992Z" Fill="#130F40" />
+                <Path Data="M12.0001 21.02C8.24008 21.02 4.69008 18.82 2.25008 15C1.19008 13.35 1.19008 10.66 2.25008 8.99998C4.70008 5.17998 8.25008 2.97998 12.0001 2.97998C15.7501 2.97998 19.3001 5.17998 21.7401 8.99998C22.8001 10.65 22.8001 13.34 21.7401 15C19.3001 18.82 15.7501 21.02 12.0001 21.02ZM12.0001 4.47998C8.77008 4.47998 5.68008 6.41998 3.52008 9.80998C2.77008 10.98 2.77008 13.02 3.52008 14.19C5.68008 17.58 8.77008 19.52 12.0001 19.52C15.2301 19.52 18.3201 17.58 20.4801 14.19C21.2301 13.02 21.2301 10.98 20.4801 9.80998C18.3201 6.41998 15.2301 4.47998 12.0001 4.47998Z" Fill="#130F40" />
+            </Canvas>
+        </Viewbox>
+
+        <Button x:Name="SignUpButton" Content="Sign Up"
+        Width="150"
+        Height="50"
+        Background="#FF4D5EFF"
+        Foreground="White"
+        BorderBrush="{x:Null}"
+        BorderThickness="2" Grid.Column="1" Margin="104,161,160,74" Grid.Row="2" FontFamily="Kanit Light" Click="SignUpButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="28">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FF3C4CD1" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FF2A3ABA" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FFC0C0C0" />
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label x:Name="password_check_characters_lable" Content="Least 8 characters" Foreground="#FFD7D7D7" Margin="8,11,0,250" FontFamily="Kanit" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"/>
+        <Label x:Name="SignInButton"
+       Cursor="Hand"
+       Margin="211,226,0,25"
+       FontSize="16"
+       FontFamily="Kanit"
+       HorizontalAlignment="Left"
+       MouseLeftButtonDown="SignInButton_MouseLeftButtonDown"
+       Grid.Row="2"
+       Grid.Column="1">
+            <Label.Content>
+                <TextBlock Text="Sign In!"
+                   Foreground="#FF4D5EFF">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#FF4D5EFF" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FF3C4CD1" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+
+
+        <controls:Underline LineColor="#D7D7D7" LineThickness="1" Margin="217,248,146,29" RenderTransformOrigin="3.375,0.496" Grid.Row="2" Grid.Column="1" />
+        <controls:Underline x:Name="password_underline_correction_animation" LineColor="#D7D7D7" LineThickness="1.5" Margin="40,52,12,5" RenderTransformOrigin="3.375,0.496" Grid.Row="1" />
+    </Grid>
+</Window>

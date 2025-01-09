@@ -8,4 +8,56 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Fonts\Kanit-Black.ttf" />
+    <None Remove="Fonts\Kanit-BlackItalic.ttf" />
+    <None Remove="Fonts\Kanit-Bold.ttf" />
+    <None Remove="Fonts\Kanit-BoldItalic.ttf" />
+    <None Remove="Fonts\Kanit-ExtraBold.ttf" />
+    <None Remove="Fonts\Kanit-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\Kanit-ExtraLight.ttf" />
+    <None Remove="Fonts\Kanit-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\Kanit-Italic.ttf" />
+    <None Remove="Fonts\Kanit-Light.ttf" />
+    <None Remove="Fonts\Kanit-LightItalic.ttf" />
+    <None Remove="Fonts\Kanit-Medium.ttf" />
+    <None Remove="Fonts\Kanit-MediumItalic.ttf" />
+    <None Remove="Fonts\Kanit-Regular.ttf" />
+    <None Remove="Fonts\Kanit-SemiBold.ttf" />
+    <None Remove="Fonts\Kanit-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\Kanit-Thin.ttf" />
+    <None Remove="Fonts\Kanit-ThinItalic.ttf" />
+    <None Remove="icon_checked.svg" />
+    <None Remove="Resources\icons\close_circle.png" />
+    <None Remove="Resources\icons\icon_package.svg" />
+    <None Remove="Resources\icons\user_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Svg.Skia" Version="2.0.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Kanit-Black.ttf" />
+    <Resource Include="Fonts\Kanit-BlackItalic.ttf" />
+    <Resource Include="Fonts\Kanit-Bold.ttf" />
+    <Resource Include="Fonts\Kanit-BoldItalic.ttf" />
+    <Resource Include="Fonts\Kanit-ExtraBold.ttf" />
+    <Resource Include="Fonts\Kanit-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\Kanit-ExtraLight.ttf" />
+    <Resource Include="Fonts\Kanit-ExtraLightItalic.ttf" />
+    <Resource Include="Fonts\Kanit-Italic.ttf" />
+    <Resource Include="Fonts\Kanit-Light.ttf" />
+    <Resource Include="Fonts\Kanit-LightItalic.ttf" />
+    <Resource Include="Fonts\Kanit-Medium.ttf" />
+    <Resource Include="Fonts\Kanit-MediumItalic.ttf" />
+    <Resource Include="Fonts\Kanit-Regular.ttf" />
+    <Resource Include="Fonts\Kanit-SemiBold.ttf" />
+    <Resource Include="Fonts\Kanit-SemiBoldItalic.ttf" />
+    <Resource Include="Fonts\Kanit-Thin.ttf" />
+    <Resource Include="Fonts\Kanit-ThinItalic.ttf" />
+    <Resource Include="icon_checked.svg" />
+    <Resource Include="Resources\icons\icon_package.svg" />
+  </ItemGroup>
+
 </Project>
