@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VinylVerse.Behaviors;
 using System.Windows.Media.Animation;
+using System.Drawing;
 
 namespace VinylVerse
 {
@@ -40,7 +41,8 @@ namespace VinylVerse
 
         private void SignInButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Sign In button clicked!");
+            var signInWindow = Application.Current.Windows.OfType<SignIn>().FirstOrDefault();
+            Animator.AnimateWindowTransition(this, Application.Current.Windows.);
         }
 
         private void username_textbox_TextChanged(object sender, TextChangedEventArgs e)
@@ -238,32 +240,45 @@ namespace VinylVerse
         {
             int strength = GetPasswordStrength(password);
 
-            double targetScale = strength switch
+            switch (strength)
             {
-                0 => 0.5,
-                1 => 1.0,
-                2 => 1.5,
-                3 => 2.0,
-                _ => 1.0
-            };
+                case 0:
+                    p1.Visibility = System.Windows.Visibility.Hidden;
+                    p2.Visibility = System.Windows.Visibility.Hidden;
+                    p3.Visibility = System.Windows.Visibility.Hidden;
+                    break;
+                case 1:
+                    if (p1.Visibility != System.Windows.Visibility.Visible)
+                    {
+                        Animator.AnimateVisibility(p1, true);
+                        p2.Visibility = System.Windows.Visibility.Hidden;
+                        p3.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    break;
+                case 2:
+                    if (p2.Visibility != System.Windows.Visibility.Visible)
+                    {
+                        Animator.AnimateVisibility(p2, true);
+                        p1.Visibility = System.Windows.Visibility.Hidden;
+                        p3.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    break;
+                case 3:
+                    if (p3.Visibility != System.Windows.Visibility.Visible)
+                    {
+                        Animator.AnimateVisibility(p3, true);
+                        p1.Visibility = System.Windows.Visibility.Hidden;
+                        p2.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    break;
+                default:
+                    p1.Visibility = System.Windows.Visibility.Hidden;
+                    p2.Visibility = System.Windows.Visibility.Hidden;
+                    p3.Visibility = System.Windows.Visibility.Hidden;
+                    break;
+            }
 
-            string targetColor = strength switch
-            {
-                0 => "#D7D7D7",
-                1 => "#eb4d4b",
-                2 => "#f9ca24",
-                3 => "#55D78B",
-                _ => "#D7D7D7"
-            };
 
-            Animator.StretchElement(password_underline_correction_animation, "left", 300, targetScale);
-
-            Animator.AnimateColorChange(
-                    password_underline_correction_animation,
-                    VinylVerse.Controls.Underline.LineColorProperty,
-                    "#D7D7D7",
-                    targetColor,
-                    300);
         }
 
         private void password_eye_closed_icon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

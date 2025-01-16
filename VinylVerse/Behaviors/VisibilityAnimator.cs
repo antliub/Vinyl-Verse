@@ -68,69 +68,123 @@ namespace VinylVerse
         }
 
         /// <summary>
-        /// Animates the stretching of a UIElement in a specified direction by pixel values.
+        /// Smoothly animates the width of a custom or standard control to a specified target width.
         /// </summary>
-        /// <param name="element">The UIElement to animate.</param>
-        /// <param name="direction">The direction to stretch ("left", "right", "up", or "down").</param>
+        /// <param name="element">The UIElement or custom control to animate.</param>
+        /// <param name="targetWidth">The target width in pixels.</param>
         /// <param name="durationMs">The duration of the animation in milliseconds (default: 300).</param>
-        /// <param name="targetSize">The target size in pixels for the stretch.</param>
-        /// <exception cref="ArgumentNullException">Thrown if the element is null.</exception>
-        /// <exception cref="ArgumentException">Thrown if the direction is invalid.</exception>
-        public static void StretchElement(UIElement element, string direction, int durationMs = 300, double targetSize = 100)
+        public static void StretchWidthToRight(UIElement element, double targetWidth, int durationMs = 300)
         {
             if (element == null)
                 throw new ArgumentNullException(nameof(element));
 
-            if (string.IsNullOrWhiteSpace(direction))
-                throw new ArgumentException("Direction cannot be null or whitespace.", nameof(direction));
-
-            element.RenderTransformOrigin = new Point(0.5, 0.5);
-
-            DoubleAnimation sizeAnimation = new DoubleAnimation
+            // If the element is a FrameworkElement, directly animate the Width property
+            if (element is FrameworkElement frameworkElement)
             {
+                AnimateFrameworkElementWidth(frameworkElement, targetWidth, durationMs);
+                return;
+            }
+
+            // For custom controls, attempt to animate the Width property using reflection
+            var widthProperty = element.GetType().GetProperty("Width");
+            if (widthProperty == null || !widthProperty.CanWrite)
+                throw new InvalidOperationException("The element does not have a writable Width property.");
+
+            // Get the current width value
+            double currentWidth = (double)(widthProperty.GetValue(element) ?? 0);
+
+            // Ensure a valid starting width
+            if (currentWidth <= 0)
+                throw new InvalidOperationException("The element's Width is not initialized or is set to 0.");
+
+            // Animate the custom Width property
+            AnimateCustomControlWidth(element, widthProperty, currentWidth, targetWidth, durationMs);
+        }
+
+        /// <summary>
+        /// Animates the Width property of a FrameworkElement.
+        /// </summary>
+        private static void AnimateFrameworkElementWidth(FrameworkElement element, double targetWidth, int durationMs)
+        {
+            // Ensure Width is initialized
+            if (double.IsNaN(element.Width) || element.Width == 0)
+                element.Width = element.ActualWidth > 0 ? element.ActualWidth : 1;
+
+            // Create the animation
+            var widthAnimation = new DoubleAnimation
+            {
+                From = element.Width,
+                To = targetWidth,
                 Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut },
-                From = null,
-                To = targetSize
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            switch (direction.ToLower())
+            // Apply the animation
+            element.BeginAnimation(FrameworkElement.WidthProperty, widthAnimation);
+        }
+
+        /// <summary>
+        /// Animates the Width property of a custom control using reflection.
+        /// </summary>
+        private static void AnimateCustomControlWidth(UIElement element, System.Reflection.PropertyInfo widthProperty, double currentWidth, double targetWidth, int durationMs)
+        {
+            var animation = new DoubleAnimation
             {
-                case "right":
-                    if (element is FrameworkElement frameworkElementRight)
-                    {
-                        sizeAnimation.From = frameworkElementRight.Width;
-                        frameworkElementRight.BeginAnimation(FrameworkElement.WidthProperty, sizeAnimation);
-                    }
-                    break;
+                From = currentWidth,
+                To = targetWidth,
+                Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
 
-                case "left":
-                    if (element is FrameworkElement frameworkElementLeft)
-                    {
-                        sizeAnimation.From = frameworkElementLeft.Width;
-                        frameworkElementLeft.BeginAnimation(FrameworkElement.WidthProperty, sizeAnimation);
-                    }
-                    break;
+            // Manually apply the animation by updating the property over time
+            var storyboard = new Storyboard();
+            Storyboard.SetTarget(animation, element);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(widthProperty.Name));
+            storyboard.Children.Add(animation);
 
-                case "up":
-                    if (element is FrameworkElement frameworkElementUp)
-                    {
-                        sizeAnimation.From = frameworkElementUp.Height;
-                        frameworkElementUp.BeginAnimation(FrameworkElement.HeightProperty, sizeAnimation);
-                    }
-                    break;
+            storyboard.Begin();
+        }
 
-                case "down":
-                    if (element is FrameworkElement frameworkElementDown)
-                    {
-                        sizeAnimation.From = frameworkElementDown.Height;
-                        frameworkElementDown.BeginAnimation(FrameworkElement.HeightProperty, sizeAnimation);
-                    }
-                    break;
+        /// <summary>
+        /// Анимация перехода между окнами с затуханием текущего окна и появлением нового.
+        /// </summary>
+        /// <param name="currentWindow">Текущее окно.</param>
+        /// <param name="newWindow">Новое окно.</param>
+        /// <param name="fadeOutDurationMs">Длительность анимации затухания текущего окна в миллисекундах (по умолчанию: 300).</param>
+        /// <param name="fadeInDurationMs">Длительность анимации появления нового окна в миллисекундах (по умолчанию: 300).</param>
+        public static void AnimateWindowTransition(Window currentWindow, Window newWindow, int fadeOutDurationMs = 300, int fadeInDurationMs = 300)
+        {
+            if (currentWindow == null)
+                throw new ArgumentNullException(nameof(currentWindow));
 
-                default:
-                    throw new ArgumentException("Invalid direction. Valid values are 'right', 'left', 'up', 'down'.");
-            }
+            if (newWindow == null)
+                throw new ArgumentNullException(nameof(newWindow));
+
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation
+            {
+                From = 1.0,
+                To = 0.0,
+                Duration = new Duration(TimeSpan.FromMilliseconds(fadeOutDurationMs))
+            };
+
+            fadeOutAnimation.Completed += (s, e) =>
+            {
+                currentWindow.Close();
+
+                newWindow.Opacity = 0;
+                newWindow.Show();
+
+                DoubleAnimation fadeInAnimation = new DoubleAnimation
+                {
+                    From = 0.0,
+                    To = 1.0,
+                    Duration = new Duration(TimeSpan.FromMilliseconds(fadeInDurationMs))
+                };
+
+                newWindow.BeginAnimation(Window.OpacityProperty, fadeInAnimation);
+            };
+
+            currentWindow.BeginAnimation(Window.OpacityProperty, fadeOutAnimation);
         }
     }
 }

@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:VinylVerse"
              StartupUri="SignUp.xaml">
     <Application.Resources>
-    
+
     </Application.Resources>
 </Application>

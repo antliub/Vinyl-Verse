@@ -27,7 +27,6 @@
     <None Remove="Fonts\Kanit-SemiBoldItalic.ttf" />
     <None Remove="Fonts\Kanit-Thin.ttf" />
     <None Remove="Fonts\Kanit-ThinItalic.ttf" />
-    <None Remove="icon_checked.svg" />
     <None Remove="Resources\icons\close_circle.png" />
     <None Remove="Resources\icons\icon_package.svg" />
     <None Remove="Resources\icons\user_icon.png" />
@@ -56,7 +55,6 @@
     <Resource Include="Fonts\Kanit-SemiBoldItalic.ttf" />
     <Resource Include="Fonts\Kanit-Thin.ttf" />
     <Resource Include="Fonts\Kanit-ThinItalic.ttf" />
-    <Resource Include="icon_checked.svg" />
     <Resource Include="Resources\icons\icon_package.svg" />
   </ItemGroup>
 
