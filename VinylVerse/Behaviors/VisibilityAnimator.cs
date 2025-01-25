@@ -146,13 +146,13 @@ namespace VinylVerse
         }
 
         /// <summary>
-        /// Анимация перехода между окнами с затуханием текущего окна и появлением нового.
+        /// Анимация перехода между окнами с появлением следующего окна на месте предыдущего.
         /// </summary>
         /// <param name="currentWindow">Текущее окно.</param>
         /// <param name="newWindow">Новое окно.</param>
-        /// <param name="fadeOutDurationMs">Длительность анимации затухания текущего окна в миллисекундах (по умолчанию: 300).</param>
-        /// <param name="fadeInDurationMs">Длительность анимации появления нового окна в миллисекундах (по умолчанию: 300).</param>
-        public static void AnimateWindowTransition(Window currentWindow, Window newWindow, int fadeOutDurationMs = 300, int fadeInDurationMs = 300)
+        /// <param name="fadeOutDurationMs">Длительность анимации затухания текущего окна в миллисекундах (по умолчанию: 150).</param>
+        /// <param name="fadeInDurationMs">Длительность анимации появления нового окна в миллисекундах (по умолчанию: 150).</param>
+        public static void AnimateWindowTransition(Window currentWindow, Window newWindow, int fadeOutDurationMs = 150, int fadeInDurationMs = 150)
         {
             if (currentWindow == null)
                 throw new ArgumentNullException(nameof(currentWindow));
@@ -160,11 +160,15 @@ namespace VinylVerse
             if (newWindow == null)
                 throw new ArgumentNullException(nameof(newWindow));
 
+            newWindow.Left = currentWindow.Left;
+            newWindow.Top = currentWindow.Top;
+
             DoubleAnimation fadeOutAnimation = new DoubleAnimation
             {
                 From = 1.0,
                 To = 0.0,
-                Duration = new Duration(TimeSpan.FromMilliseconds(fadeOutDurationMs))
+                Duration = new Duration(TimeSpan.FromMilliseconds(fadeOutDurationMs)),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
             fadeOutAnimation.Completed += (s, e) =>
@@ -178,7 +182,8 @@ namespace VinylVerse
                 {
                     From = 0.0,
                     To = 1.0,
-                    Duration = new Duration(TimeSpan.FromMilliseconds(fadeInDurationMs))
+                    Duration = new Duration(TimeSpan.FromMilliseconds(fadeInDurationMs)),
+                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
                 newWindow.BeginAnimation(Window.OpacityProperty, fadeInAnimation);

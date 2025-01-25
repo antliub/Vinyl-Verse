@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using VinylVerse.Behaviors;
 using System.Windows.Media.Animation;
 using System.Drawing;
+using System.Text.RegularExpressions;
+using VinylVerse.Controls;
 
 namespace VinylVerse
 {
@@ -23,6 +25,11 @@ namespace VinylVerse
     /// </summary>
     public partial class SignUp : Window
     {
+        private string pattern = "^[a-zA-Z0-9\\s!@#\\$%\\^&\\*\\(\\)_\\+\\-=\\[\\]\\{\\};:'\",\\.<>\\?/\\\\|]+$";
+
+        private bool isPasswordRight = false;
+        private bool isPasswordRepitedRight = false;
+
         private bool isPasswordVisible = false;
         private string actualPassword = "";
         private bool isUpdatingText = false;
@@ -36,13 +43,64 @@ namespace VinylVerse
         }
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Sign Up button clicked!");
+            string name = username_textbox.Text.Trim(); // Username
+            string email = email_textbox.Text.Trim(); // Email
+            string password = password_textbox.Text.Trim(); // Password
+
+            // if all filled with data
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                CustomMessageBox.ShowNotification("Please fill in all fields.", 1500);
+                return;
+            }
+
+            DatabaseHelper db = new DatabaseHelper();
+
+            // if username exsist
+            if (db.IsUserExists(name))
+            {
+                CustomMessageBox.ShowNotification("Oh no, this username is already taken!", 1500);
+                return;
+            }
+
+            // user register
+            if (isPasswordRight && isPasswordRepitedRight && db.RegisterUser(name, email, password))
+            {
+                CustomMessageBox.ShowNotification("Registration successful!", 1500);
+                username_textbox.Clear();
+                email_textbox.Clear();
+                password_textbox.Clear();
+                r_password_textbox.Clear();
+            }
+            else
+            {
+                CustomMessageBox.ShowNotification("Registration failed. Please try again.", 1500);
+            }
         }
 
         private void SignInButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var signInWindow = Application.Current.Windows.OfType<SignIn>().FirstOrDefault();
-            Animator.AnimateWindowTransition(this, Application.Current.Windows.);
+            SignIn signInWindow = new SignIn();
+            Animator.AnimateWindowTransition(this, signInWindow);
+        }
+        private void username_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, pattern);
+        }
+
+        private void email_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, pattern);
+        }
+
+        private void password_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, pattern);
+        }
+
+        private void r_password_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !Regex.IsMatch(e.Text, pattern);
         }
 
         private void username_textbox_TextChanged(object sender, TextChangedEventArgs e)
@@ -246,6 +304,7 @@ namespace VinylVerse
                     p1.Visibility = System.Windows.Visibility.Hidden;
                     p2.Visibility = System.Windows.Visibility.Hidden;
                     p3.Visibility = System.Windows.Visibility.Hidden;
+                    isPasswordRight = false;
                     break;
                 case 1:
                     if (p1.Visibility != System.Windows.Visibility.Visible)
@@ -254,6 +313,7 @@ namespace VinylVerse
                         p2.Visibility = System.Windows.Visibility.Hidden;
                         p3.Visibility = System.Windows.Visibility.Hidden;
                     }
+                    isPasswordRight = false;
                     break;
                 case 2:
                     if (p2.Visibility != System.Windows.Visibility.Visible)
@@ -262,6 +322,7 @@ namespace VinylVerse
                         p1.Visibility = System.Windows.Visibility.Hidden;
                         p3.Visibility = System.Windows.Visibility.Hidden;
                     }
+                    isPasswordRight = false;
                     break;
                 case 3:
                     if (p3.Visibility != System.Windows.Visibility.Visible)
@@ -270,11 +331,13 @@ namespace VinylVerse
                         p1.Visibility = System.Windows.Visibility.Hidden;
                         p2.Visibility = System.Windows.Visibility.Hidden;
                     }
+                    isPasswordRight = true;
                     break;
                 default:
                     p1.Visibility = System.Windows.Visibility.Hidden;
                     p2.Visibility = System.Windows.Visibility.Hidden;
                     p3.Visibility = System.Windows.Visibility.Hidden;
+                    isPasswordRight = false;
                     break;
             }
 
@@ -344,6 +407,7 @@ namespace VinylVerse
                         "#D7D7D7",
                         "#55D78B",
                         300);
+                isPasswordRepitedRight = true;
             } else if (actualPassword != actualRPassword && (!string.IsNullOrEmpty(r_password_textbox.Text) || !string.IsNullOrEmpty(password_textbox.Text)))
             {
                 Animator.AnimateColorChange(
@@ -352,6 +416,7 @@ namespace VinylVerse
                         "#D7D7D7",
                         "#eb4d4b",
                         300);
+                isPasswordRepitedRight = false;
             } else if (string.IsNullOrEmpty(r_password_textbox.Text)){
                 Animator.AnimateColorChange(
                         r_password_underline,
@@ -359,6 +424,7 @@ namespace VinylVerse
                         "#55D78B",
                         "#D7D7D7",
                         300);
+                isPasswordRepitedRight = false;
             }
         }
 
